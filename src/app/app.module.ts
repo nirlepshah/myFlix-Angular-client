@@ -17,12 +17,21 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { RouterModule, Routes } from '@angular/router';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { DirectorCardComponent } from './director-card/director-card.component';
+import { GenreCardComponent } from './genre-card/genre-card.component';
+import { SynopsisCardComponent } from './synopsis-card/synopsis-card.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
+import { ProfileViewComponent } from './profile-view/profile-view.component';
+
+
 
 // defining routes
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
+  { path: 'profile', component: ProfileViewComponent }
 ];
 
 @NgModule({
@@ -31,7 +40,14 @@ const appRoutes: Routes = [
     UserRegistrationFormComponent,
     UserLoginFormComponent,
     MovieCardComponent,
-    WelcomePageComponent
+    WelcomePageComponent,
+    DirectorCardComponent,
+    GenreCardComponent,
+    SynopsisCardComponent,
+    NavbarComponent,
+    UserEditComponent,
+    ProfileViewComponent,
+    
   ],
   imports: [
     BrowserModule,
