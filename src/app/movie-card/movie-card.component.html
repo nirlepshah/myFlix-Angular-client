@@ -1,6 +1,50 @@
-<mat-card *ngFor="let movie of movies; let i = index">
-  <mat-dialog-content>
-    <mat-card-title>{{ movie.Title }}</mat-card-title>
-    <mat-card-subtitle><img src="{{ movie.ImagePath }}" /></mat-card-subtitle>
-  </mat-dialog-content>
-</mat-card>
+<app-navbar></app-navbar>
+<div>
+  <mat-card *ngFor="let movie of movies; let i = index">
+    <mat-dialog-content>
+      <mat-card-title>{{ movie.Title }}</mat-card-title>
+      <mat-card-subtitle><img src="{{ movie.ImagePath }}" /></mat-card-subtitle>
+      <mat-card-header>
+        <button
+          class="director-button"
+          mat-button
+          color="grey"
+          (click)="
+            openDirectorDialog(
+              movie.Director.Name,
+              movie.Director.Bio,
+              movie.Director.Birth
+            )
+          "
+        >
+          Director Details
+        </button>
+
+        <button
+          class="genre-button"
+          mat-button
+          color="grey"
+          (click)="openGenreDialog(movie.Genre.Name, movie.Genre.Description)"
+        >
+          Genre Details
+        </button>
+        <button
+          class="synopsis-button"
+          mat-button
+          color="grey"
+          (click)="
+            openSynopsis(movie.Title, movie.ImagePath, movie.Description)
+          "
+        >
+          Synopsis
+        </button>
+
+        <p><b>Movies ID</b> {{ movie._id }}</p>
+
+        <button mat-button (click)="addToUserFavs(movie._id)">Add Movie</button>
+        <button mat-button (click)="DeleteFavs(movie._id)">Delete Movie</button>
+        <button mat-button (click)="getCurrentUser()">User Details</button>
+      </mat-card-header>
+    </mat-dialog-content>
+  </mat-card>
+</div>
