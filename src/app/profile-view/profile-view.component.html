@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+
+<h3><b>Username: </b>{{ this.userName }}</h3>
+<h3><b>Email:</b> {{ user.Email }}</h3>
+<h3><b>Birthday:</b> {{ user.Birthday }}</h3>
+<h3><b>Favourite Movies:</b> {{ user.FavouriteMovies }}</h3>
+
+<button
+  class="profile-btn"
+  mat-raised-button
+  (click)="openEditUserProfile()"
+  style="margin-right: 10px"
+  color="primary"
+>
+  Edit Profile
+</button>
+<!-- <button
+  class="profile-btn"
+  mat-raised-button
+  (click)="openUserDeleteProfile()"
+  style="margin-right: 10px"
+  color="primary"
+>
+  Delete Profile
+</button> -->
+
+<button
+  class="profile-btn"
+  color="primary"
+  mat-raised-button
+  (click)="deleteUserProfile()"
+>
+  Delete Profile
+</button>
+
+<button
+  class="profile-btn"
+  mat-raised-button
+  (click)="getUser()"
+  style="margin-left: 10px"
+  color="primary"
+>
+  Test
+</button>
