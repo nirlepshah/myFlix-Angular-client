@@ -80,11 +80,10 @@ getMovies(): void {
     const token = localStorage.getItem('token');
     console.log(token)
     this.fetchApiData.addFavMovie(id).subscribe((response: any) => {
-      
       console.log(response);
+      this.ngOnInit();
     });
-    
-    }
+        }
     DeleteFavs(id: string): void {
       console.log(id);
         this.fetchApiData.deleteFavMovie(id).subscribe((response: any) => {
