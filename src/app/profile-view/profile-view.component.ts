@@ -93,27 +93,12 @@ export class ProfileViewComponent implements OnInit {
               });
       
     });
-    // return this.favMovies; 
+    
    
   }
   
          
-  // getfavMovies(): void {
-  //       this.movies.forEach((movie: any) => {
-  //     if (this.user.FavouriteMovies.includes(movie._id)) {
-  //       this.favMovies.push(movie);
-  //     }
-  //     console.log(this.favMovies)
-  //     return this.favMovies
-  //   });
-    
-      
-    //}
-  //   test(): void {
-   
-  //   console.log(this.favMovies)
-    
-  // }
+
   //Delete User account
  
   deleteUserProfile(): void {
