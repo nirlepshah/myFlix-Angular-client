@@ -18,7 +18,10 @@ export class ProfileViewComponent implements OnInit {
   user: any = {};
   movies: any[] = [];
   userName: any = localStorage.getItem('user');
-  
+  favs: any = null;
+  favMovies: any[] = [];
+  displayElement: boolean = false
+
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
@@ -27,10 +30,41 @@ export class ProfileViewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getUser();
+
     
+    // this.getfavMovies()
+    this.getUser();
+    this.getFavs()  
   }
- 
+  
+  openSynopsis(title: string, imagePath: any, description: string): void {
+    this.dialog.open(SynopsisCardComponent, {
+      data: {
+        Title: title,
+        ImagePath: imagePath,
+        Description: description,
+      },
+      width: '500px'
+    });
+   
+  }
+  openDirectorDialog(name: string, bio: string, birth: string): void {
+    this.dialog.open(DirectorCardComponent, {
+      data: {Name: name, Bio: bio, Birth: birth},
+      width: '500px',
+    });
+  }
+  // Open Genre View
+  openGenreDialog(name: string, description: string): void {
+    this.dialog.open(GenreCardComponent, {
+      data: {
+        Name: name,
+        Description: description,
+      },
+      width: '500px'
+    });
+  }
+
   getUser(): void {
     const user = localStorage.getItem('user');
     if (user) {
@@ -47,7 +81,40 @@ export class ProfileViewComponent implements OnInit {
     });
   }
   
-  // Delete User account
+  getFavs(): void {
+    let movies: any[] = [];
+    this.fetchApiData.getAllMovies().subscribe((res: any) => {
+      movies = res;
+      movies.forEach((movie: any) => {
+        if (this.user.FavouriteMovies.includes(movie._id)) {
+          this.favMovies.push(movie);
+          this.displayElement = true;
+        }
+              });
+      
+    });
+    // return this.favMovies; 
+   
+  }
+  
+         
+  // getfavMovies(): void {
+  //       this.movies.forEach((movie: any) => {
+  //     if (this.user.FavouriteMovies.includes(movie._id)) {
+  //       this.favMovies.push(movie);
+  //     }
+  //     console.log(this.favMovies)
+  //     return this.favMovies
+  //   });
+    
+      
+    //}
+  //   test(): void {
+   
+  //   console.log(this.favMovies)
+    
+  // }
+  //Delete User account
  
   deleteUserProfile(): void {
     if (confirm('Are you sure? This cannot be undone.')) {
@@ -61,6 +128,13 @@ export class ProfileViewComponent implements OnInit {
     }
   
   }
-
-
+  removeFav(id: string): void {
+    this.fetchApiData.deleteFavMovie(id).subscribe((res: any) => {
+      this.snackBar.open('Successfully removed from favorite movies.', 'OK', {
+        duration: 2000,
+      });
+      this.ngOnInit();
+      return this.favs;
+    })
+  }
 }
