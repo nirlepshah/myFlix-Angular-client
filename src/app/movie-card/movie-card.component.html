@@ -39,11 +39,13 @@
           Synopsis
         </button>
 
-        <p><b>Movies ID</b> {{ movie._id }}</p>
+        <!-- <p><b>Movies ID</b> {{ movie._id }}</p> -->
 
-        <button mat-button (click)="addToUserFavs(movie._id)">Add Movie</button>
-        <button mat-button (click)="DeleteFavs(movie._id)">Delete Movie</button>
-        <button mat-button (click)="getCurrentUser()">User Details</button>
+        <button mat-button (click)="addToUserFavs(movie._id)">
+          Add Movie to your favourite movie list
+        </button>
+        <!-- <button mat-button (click)="DeleteFavs(movie._id)">Delete Movie</button> -->
+        <!-- <button mat-button (click)="getCurrentUser()">User Details</button> -->
       </mat-card-header>
     </mat-dialog-content>
   </mat-card>
