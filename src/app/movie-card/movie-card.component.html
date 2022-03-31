@@ -1,9 +1,13 @@
 <app-navbar></app-navbar>
-<div>
+<div class="movie-card" style="display: flex">
   <mat-card *ngFor="let movie of movies; let i = index">
-    <mat-dialog-content>
+    <mat-dialog-content class="">
       <mat-card-title>{{ movie.Title }}</mat-card-title>
-      <mat-card-subtitle><img src="{{ movie.ImagePath }}" /></mat-card-subtitle>
+      <div class="img-container">
+        <mat-card-subtitle
+          ><img src="{{ movie.ImagePath }}"
+        /></mat-card-subtitle>
+      </div>
       <mat-card-header>
         <button
           class="director-button"
@@ -40,7 +44,7 @@
         </button>
 
         <button mat-button (click)="addToUserFavs(movie._id)">
-          Add Movie to your favourite movie list
+          Add Movie To Favourite
         </button>
       </mat-card-header>
     </mat-dialog-content>
