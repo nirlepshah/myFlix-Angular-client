@@ -90,7 +90,7 @@ export class ProfileViewComponent implements OnInit {
           this.favMovies.push(movie);
           this.displayElement = true;
         }
-              });
+        });
       
     });
     
