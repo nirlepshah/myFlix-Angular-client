@@ -11,7 +11,8 @@ export class DirectorCardComponent implements OnInit {
   constructor(
     
     /**
-     * Uses Inject to get the movie details from the movie object
+     * @param data - Use Inject to get the movie details from the movie object
+     
      */
     @Inject(MAT_DIALOG_DATA)
     public data: {

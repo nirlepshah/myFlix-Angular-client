@@ -26,8 +26,12 @@ ngOnInit(): void {
   this.getCurrentUser();
 }
 
+/**
+ *  Use Api call to get data of all movies
+ * @function getAllMovies
+ * @returns movies in JSON format
+ */
 
-//Get all movies
 getMovies(): void {
   this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -35,14 +39,24 @@ getMovies(): void {
       return this.movies;
     });
   }
-  // open Director dialog
+  /**
+   * open a dialog to display the DirectorCardComponent
+   * @param name {string}
+   * @param bio {string}
+   * @param birth {string}
+   */
   openDirectorDialog(name: string, bio: string, birth: string): void {
     this.dialog.open(DirectorCardComponent, {
       data: {Name: name, Bio: bio, Birth: birth},
       width: '500px',
     });
   }
-  // Open Genre View
+  
+  /**
+   * open a dialog to display the GenreCardComponent
+   * @param name {string}
+   * @param description {string}
+   */
   openGenreDialog(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
       data: {
@@ -52,6 +66,12 @@ getMovies(): void {
       width: '500px'
     });
   }
+  /**
+   * open a dialog to display the SynopsisCardComponent
+   * @param title {string}
+   * @param imagePath {string}
+   * @param description {string}
+   */
   openSynopsis(title: string, imagePath: any, description: string): void {
     this.dialog.open(SynopsisCardComponent, {
       data: {
@@ -63,6 +83,10 @@ getMovies(): void {
     });
    
   }
+  /**
+   * use API to get current user data
+   * @function getCurrentUser()
+      */
   getCurrentUser(): void {
     const username = localStorage.getItem('user');
     this.fetchApiData.getUser(username).subscribe((resp: any) => {
@@ -75,6 +99,11 @@ getMovies(): void {
 
     });
   }
+  /**
+   * use API end-point to add user favorite movie
+   * @function addToUserFavs()
+   * @param id {string}
+   */
   addToUserFavs(id: string): void {
     console.log(id);
     const token = localStorage.getItem('token');
@@ -83,7 +112,13 @@ getMovies(): void {
       console.log(response);
       this.ngOnInit();
     });
-        }
+    }
+
+        /**
+         * use API end-point to delete user favorite movie
+         * @function 
+         * @param id DeleteFavs()
+         */
     DeleteFavs(id: string): void {
       console.log(id);
         this.fetchApiData.deleteFavMovie(id).subscribe((response: any) => {
@@ -92,5 +127,4 @@ getMovies(): void {
       
       }
    
-
 }

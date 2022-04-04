@@ -17,6 +17,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./user-registration-form.component.scss']
 })
 export class UserRegistrationFormComponent implements OnInit {
+  /**
+   * gets input values and stores in userData
+   */
 
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
 
@@ -28,7 +31,14 @@ constructor(
 ngOnInit(): void {
 }
 
-// This is the function responsible for sending the form inputs to the backend
+/**
+ * This function is responsible for sending the form inputs to the backend
+ * call API end-point to register a new user
+ * @function registerUser()
+ * @param this.userData {object}
+ * @return new user in the JSON format
+ */
+
 registerUser(): void {
     this.fetchApiData.userRegistration(this.userData).subscribe((result) => {
   

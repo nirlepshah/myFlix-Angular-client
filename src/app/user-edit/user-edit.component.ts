@@ -12,7 +12,9 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 export class UserEditComponent implements OnInit {
   Username = localStorage.getItem('user');
   user: any = {};
-
+/**
+ * Binding input values to userData object
+ */
   @Input() userData = { 
     Username: this.user.Username,
     Password: this.user.Password,
@@ -30,7 +32,9 @@ export class UserEditComponent implements OnInit {
   ngOnInit(): void {
     this.getUser();
   }
-
+/**
+ *  get user info
+ */
   getUser(): void {
     const user = localStorage.getItem('user');
     this.fetchApiData.getUser(user).subscribe((resp: any) => {
@@ -39,7 +43,13 @@ export class UserEditComponent implements OnInit {
       return this.user
     });
   }
-
+/**
+ * update the user information in API
+ * @function editUserProfile()
+ * @param this.userData 
+ * popup message is displayed after profile is updated
+ * 
+ */
   editUserProfile(): void {
     this.fetchApiData.editUserProfile(this.userData).subscribe((resp) => {
       this.dialogRef.close();

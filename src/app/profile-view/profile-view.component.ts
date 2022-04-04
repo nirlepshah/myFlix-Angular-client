@@ -36,7 +36,12 @@ export class ProfileViewComponent implements OnInit {
     this.getUser();
     this.getFavs()  
   }
-  
+  /**
+   * open a dialog to display the SynopsisCardComponent
+   * @param title {string}
+   * @param imagePath {string}
+   * @param description {string}
+   */
   openSynopsis(title: string, imagePath: any, description: string): void {
     this.dialog.open(SynopsisCardComponent, {
       data: {
@@ -48,13 +53,25 @@ export class ProfileViewComponent implements OnInit {
     });
    
   }
+  /**
+   * open a dialog to display the DirectorCardComponent
+   * @param name {string}
+   * @param bio {string}
+   * @param birth {string}
+   */
   openDirectorDialog(name: string, bio: string, birth: string): void {
     this.dialog.open(DirectorCardComponent, {
       data: {Name: name, Bio: bio, Birth: birth},
       width: '500px',
     });
   }
-  // Open Genre View
+  
+  /**
+   * open a dialog to display the GenreCardComponent
+   * @param name {string}
+   * @param description {string}
+   */
+
   openGenreDialog(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
       data: {
@@ -64,7 +81,10 @@ export class ProfileViewComponent implements OnInit {
       width: '500px'
     });
   }
-
+/**
+ * call API end-point to get the user's information
+ * @function getUser()
+  */
   getUser(): void {
     const user = localStorage.getItem('user');
     if (user) {
@@ -74,13 +94,20 @@ export class ProfileViewComponent implements OnInit {
       });
     }
   }
-  
+  /**
+   * open a dialog to edit the user profile
+   * @module UserEditComponent
+   */
   openEditUserProfile(): void {
     this.dialog.open(UserEditComponent, {
       width: '500px'
     });
   }
-  
+  /**
+   * call API end-point to get the user's information
+   * @function getFavs()
+   * get user's favorite movies list
+   */
   getFavs(): void {
     let movies: any[] = [];
     this.fetchApiData.getAllMovies().subscribe((res: any) => {
@@ -96,10 +123,11 @@ export class ProfileViewComponent implements OnInit {
     
    
   }
-  
-         
-
-  //Delete User account
+          
+  /**
+   * call API end-point to remove the current user
+   * @function deleteUserProfile()
+   */
  
   deleteUserProfile(): void {
     if (confirm('Are you sure? This cannot be undone.')) {
@@ -112,7 +140,10 @@ export class ProfileViewComponent implements OnInit {
       });
     }
   
-  }
+  }/**
+   * use API end-point to remove user favorite
+   * @param id {string}
+   */
   removeFav(id: string): void {
     this.fetchApiData.deleteFavMovie(id).subscribe((res: any) => {
       this.snackBar.open('Successfully removed from favorite movies.', 'OK', {
