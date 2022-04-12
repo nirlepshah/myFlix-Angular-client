@@ -24,6 +24,7 @@ export class MovieCardComponent {
 ngOnInit(): void {
   this.getMovies();
   this.getCurrentUser();
+  
 }
 
 /**
@@ -99,6 +100,7 @@ getMovies(): void {
 
     });
   }
+ 
   /**
    * use API end-point to add user favorite movie
    * @function addToUserFavs()
@@ -111,6 +113,7 @@ getMovies(): void {
     this.fetchApiData.addFavMovie(id).subscribe((response: any) => {
       console.log(response);
       this.ngOnInit();
+      
     });
     }
 
