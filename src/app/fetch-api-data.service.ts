@@ -6,7 +6,8 @@ import { Observable, throwError, catchError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 //Declaring the api url that will provide data for the client app
-const apiUrl = 'https://mymovieapp08.herokuapp.com';
+// const apiUrl = 'https://mymovieapp08.herokuapp.com';
+const apiUrl = 'https://myfilm-api.onrender.com/';
 // Get token from local storage for requests
 const token = localStorage.getItem('token');
 // Get username from localStorage for URLs
